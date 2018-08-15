@@ -1,5 +1,6 @@
 package com.example.wangjingyang.rxtest;
 
+import android.graphics.Bitmap;
 import android.os.Trace;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,9 @@ import android.util.Log;
 import android.widget.TextView;
 
 import junit.framework.Test;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -22,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setCreateRx();
+//        setCreateRx();
 //        setCreateRx();
 //        testJust();
 //        TestApi.formArray();
@@ -101,7 +105,37 @@ public class MainActivity extends AppCompatActivity {
 //        TestApi.defaultIfEmpty();
 
 
+//        String str = "我也不知道234你不知道weqw";
+//        String str1 = "sfks是否会将少废话jfks";
+//        Log.i("debug12334323","去掉中文  "+clearChinese(str));
+//        Log.i("debug12334323","去掉英文  "+clearEnglish(str1));
+
     }
+
+
+
+    private static String REGEX_CHINESE = "[\u4e00-\u9fa5]";// 中文正则
+    public String clearChinese(String str) {
+
+        // 去除中文
+        Pattern pat = Pattern.compile(REGEX_CHINESE);
+        Matcher mat = pat.matcher(str);
+        System.out.println(mat.replaceAll(""));
+        return mat.replaceAll("");
+    }
+
+    public String clearEnglish(String str){
+
+
+        str = str.replaceAll("[a-zA-Z]","" );
+        return str;
+    }
+
+
+
+
+
+
 
 
 
@@ -205,6 +239,42 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, "onComplete ");
             }
         });
+
+    }
+
+
+
+
+    public void testBitmp(){
+
+        Observable.create(new ObservableOnSubscribe<Bitmap>() {
+            @Override
+            public void subscribe(ObservableEmitter<Bitmap> emitter) throws Exception {
+
+            }
+        }).subscribe(new Observer<Bitmap>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(Bitmap bitmap) {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+
+
 
     }
 
