@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+//   响应式 bitmap 对象获取
     public void testBitmp(){
 
         Observable.create(new ObservableOnSubscribe<Bitmap>() {
